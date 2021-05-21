@@ -1,12 +1,14 @@
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 
-export default function Splashscreen() {
+const Advertisement = () => {
     return (
         <View>
-            <Text></Text>
+            
         </View>
     )
 }
+
+export default Advertisement
 
 const styles = StyleSheet.create({})
