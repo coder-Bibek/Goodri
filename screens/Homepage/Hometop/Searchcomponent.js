@@ -1,10 +1,22 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Dimensions, StyleSheet, Text, View } from "react-native";
 import { Searchbar,Button } from "react-native-paper";
 const Searchcomponent = () => {
+  const[myOrientation,setMyOrientation]=useState("")
+  useEffect(()=>{
+    const interval =setInterval(()=>{
+    getOrientation()
+    },100)
+    return(()=>!interval)
+  },[])
+  const getOrientation=()=>{
+    Dimensions.get("window").height>Dimensions.get("window").width?setMyOrientation("potrait"):setMyOrientation("landscape")
+  }
   return (
-    <View style={styles.Searchcomponentdiv}>
-    <Button  mode="contained" color="white" style={styles.Category} >
+    <View style={[styles.Searchcomponentdiv,{
+      paddingVertical:myOrientation=="landscape"? 46 : 16
+    }]}>
+    <Button  mode="contained"  color="white" labelStyle={styles.categoryText} style={styles.Category} >
     Categories
   </Button>
        <Searchbar
@@ -22,26 +34,29 @@ export default Searchcomponent;
 
 const styles = StyleSheet.create({
   Searchcomponentdiv: {
-      flexDirection:"row",
-    paddingVertical: 15,
-    paddingHorizontal: 5,
+    flex:0.2,
+    flexDirection:"row",
+    paddingHorizontal: 10 ,
     backgroundColor: "darkblue",
     marginTop: -6,
+    
   },
   SearchBar:{
-      width:Dimensions.get("screen").width-155,
+      flex:0.8,
       height:40,
       marginHorizontal:10
   }
   ,
   categoryText: {
     alignSelf: "center",
-    color: "grey",
-    fontSize:18,
-    
+    color:"black",
+    fontSize:12.5
   },
   Category:
-    {borderWidth:1,
+    {
+      flex:0.2,
+      height:40,
+      borderWidth:1,
         borderColor:"#fff"}
 
 });

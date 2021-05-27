@@ -8,7 +8,7 @@ const Centercomponent = () => {
     }}>
       <Text style={styles.delText}>Delivery Location</Text>
       <View style={styles.locationedit}>
-        <Text style={styles.Text}>sangam chowk,Duhabi...</Text>
+        <Text style={styles.Text}>Ward-5,Duhabi...</Text>
         <Pencil name="pencil" color="#fff" size={16} />
       </View>
     </TouchableOpacity>
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     fontSize: 12,
   },
   locationedit: {
-    width: "60%",
+    width: "40%",
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",

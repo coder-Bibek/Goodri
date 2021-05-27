@@ -1,23 +1,21 @@
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
-import { Image, ThemeProvider } from 'react-native-elements'
-import { Button } from 'react-native-paper'
-import Hometop from '../Homepage/Hometop/Hometop'
-
+import { Provider } from 'react-native-paper'
 const Errorpage = () => {
     return (
-        <ThemeProvider>
+        <Provider>
       <View style={styles.mainContainer}>
           {/* <Hometop /> */}
           <View style={styles.errorView}>
-          <Image
-        source={require("../Images/nointernet.png")}
+          {/* <Image
+        source={require("../../assets/Images/nointernet.png")}
         style={{ width: 200, height: 200 }}
-        />
-       
+        /> */}
+        <Text style={styles.CrossSign}>📶</Text>
+       <Text style={styles.noInternet}>No Internet Connection Found</Text>
           </View>
       </View>
-    </ThemeProvider>
+      </Provider>
     )
 }
 
@@ -30,6 +28,12 @@ const styles = StyleSheet.create({
     },
     errorView:{
         alignItems:"center",
-        flexDirection:"column"
+        flexDirection:"column",
+        justifyContent:"center"
+    },
+    noInternet:{alignSelf:"center",fontSize:22,color:"grey"}
+    ,CrossSign:{
+        color:"black",
+        fontSize:30
     }
 })

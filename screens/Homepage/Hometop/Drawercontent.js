@@ -1,5 +1,5 @@
 import React from "react";
-import { Dimensions, StyleSheet, Text, View } from "react-native";
+import { Dimensions, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { DrawerContentScrollView } from "@react-navigation/drawer";
 import Hands from "react-native-vector-icons/FontAwesome5";
 import Location from "react-native-vector-icons/EvilIcons"
@@ -11,7 +11,11 @@ import Cart from "react-native-vector-icons/AntDesign"
 import Notification from "react-native-vector-icons/Ionicons"
 import Lowerdrawer from "./Lowerdrawer";
 import { Image } from "react-native-elements";
+import {useNavigation} from "@react-navigation/native"
+import { useState } from "react";
 const Drawercontent = (props) => {
+  const navigation = useNavigation();
+  const[loggedIn,setLoggedIn]=useState(false)
   return (
     <View style={styles.Drawercontentdiv}>
       <DrawerContentScrollView {...props}>
@@ -25,19 +29,22 @@ const Drawercontent = (props) => {
           <Text style={styles.GoodriTag}>The Local Online Store</Text>
           </View>
         </View>
+        <View style={[styles.loggedinView,{display:loggedIn?"flex":"none"}]}>
+          <Text style={styles.welcomeText}>NAMASKAR</Text>
+        </View>
         <View style={styles.WelcomeView}>
           <Hands name="praying-hands" size={24} />
           <Text style={styles.welcomeText}>NAMASKAR</Text>
         </View>
         <View style={styles.LocationView}>
           <Location name="location" size={24} color="black" />
-          <Text style={styles.LocationText}>sangam chowk,Duhabi-3</Text>
+          <Text style={styles.LocationText}>Ward-5,Duhabi</Text>
           <Pencil name="pencil" color="black" size={16} />
         </View>
-        <View style={styles.Loginview}>
+        <TouchableOpacity style={[styles.Loginview,{display:loggedIn?"none":"flex"}]} onPress={()=>navigation.navigate("login")}  >
             <User name="user" size={16} color="black" />
             <Text style={styles.LoginText}>Login</Text>
-        </View>
+        </TouchableOpacity>
         <View style={styles.Addressview}  >
             <Address name="location" size={16}   color={"black"} />
             <Text style={[styles.AddressText,{color:"black"}]}  suppressHighlighting={true} >Duhabi</Text>
@@ -113,13 +120,14 @@ const styles = StyleSheet.create({
   },
   LocationText:{
       width:Dimensions.get("screen").width-210,
-      fontWeight:"bold"
+      fontWeight:"bold",
+      fontFamily:"sans-serif"
   },
   Loginview:{
       flexDirection:"row",
       alignItems:"center",
       marginHorizontal:20,
-      marginBottom:25
+      marginBottom:25,
   },
   LoginText:{
       marginHorizontal:14,
@@ -202,5 +210,9 @@ notificationText:{
     color:"#fff",
     textAlign:"center",
     fontWeight:"bold"  
+},
+loggedinView:{
+  padding:10,
+  alignItems:"center"
 }
 });
